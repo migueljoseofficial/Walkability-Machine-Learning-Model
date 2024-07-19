@@ -5,8 +5,8 @@ from typing import List
 
 def find_matching_street(lat, lon, street_data):
     for _, street in street_data.iterrows():
-        if (street_data['left_bound_long'] <= lon <= street_data['right_bound_long'] and
-            street_data['down_bound_lat'] <= lat <= street_data['up_bound_lat']):
+        if (street['left_bound_long'] <= lon <= street['right_bound_long'] and
+            street['down_bound_lat'] <= lat <= street['up_bound_lat']):
             return street
     return None
 
@@ -60,7 +60,10 @@ for index, row in heart_file.iterrows():
        
 
 
-        
+
+heart_file = heart_file.dropna()
+
+print(heart_file)
 # Calculate average stress level for each street
 heart_file['avg_stress_lvl_Dummy'] = heart_file.groupby('streetname')['Stress score'].transform('mean')
 
