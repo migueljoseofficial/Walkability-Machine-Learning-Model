@@ -18,7 +18,7 @@ def add_columns(heart_data: pd.DataFrame, street_data: pd.DataFrame, street_colu
 
 
 ##initalizes the data sets into pd dataframes
-heart_data = './dataset/filtered_heart_data.csv'
+heart_data = './dataset/heartrate_data.csv'
 street_data = './dataset/second_data.csv'
 
 
@@ -64,6 +64,9 @@ for index, row in heart_file.iterrows():
 heart_file = heart_file.dropna()
 
 print(heart_file)
+
+print(type(longitude))
+print(type(latitude))
 # Calculate average stress level for each street
 heart_file['avg_stress_lvl_Dummy'] = heart_file.groupby('streetname')['Stress score'].transform('mean')
 
